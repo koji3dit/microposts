@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520015303) do
+ActiveRecord::Schema.define(version: 20160521072651) do
+
+  create_table "plofiles", force: :cascade do |t|
+    t.string   "nickname"
+    t.string   "pr"
+    t.string   "place"
+    t.string   "wwebsite"
+    t.date     "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "plofiles", ["nickname"], name: "index_plofiles_on_nickname", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
