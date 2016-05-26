@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
+  before_action :set_params, only: [:show, :edit, :update,:destroy]
+  before_action :collect_user, only: [:edit, :update]
+
   def show # 追加
-   @user = User.find(params[:id])
   end
+
   def new
     @user = User.new
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -15,10 +19,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    render 'edit'
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:success] = "Updated your Plofile"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice:'削除しました' 
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :location,:website)
+  end
+ 
+  def collect_user
+    redirect_to root_path if @user != current_user
+  end
+
+  def set_params
+    @user = User.find(params[:id])
   end
 end
