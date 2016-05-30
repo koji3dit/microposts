@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show # 追加
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    @test="test"
   end
 
   def new
@@ -38,7 +39,15 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to root_path, notice:'削除しました' 
   end
-
+  
+  def followings
+    @user=User.find(params[:id])
+    @users=@user.following_users
+  end
+  def followers
+    @user=User.find(params[:id])
+    @users=@user.follower_users
+  end
   private
 
   def user_params
@@ -53,4 +62,5 @@ class UsersController < ApplicationController
   def set_params
     @user = User.find(params[:id])
   end
+  
 end
