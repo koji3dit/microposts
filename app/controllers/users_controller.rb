@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @users=@user.follower_users
   end
+  
+  
+  #ここから　Private--------------------------
+  
   private
 
   def user_params

@@ -1,6 +1,7 @@
 <h1>Followers List</h1>
  <% @users.each do |user| %>
-  名前:<%= user.name %>:plofile:<%= link_to 'plofile_link',user_path(user.id) %> 
+  名前:<%= user.name %>:plofile:<%= link_to 'plofile_link',user_path(user.id) %>
+
   </br>
  <% end %>
 
