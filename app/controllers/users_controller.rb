@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_params, only: [:show, :edit, :update,:destroy]
+  before_action :set_params, only: [:show, :edit, :update, :destroy, :followings, :followers]
   before_action :collect_user, only: [:edit, :update]
 
   def show # 追加
-    @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
-    @test="test"
   end
 
   def new
@@ -41,12 +39,14 @@ class UsersController < ApplicationController
   end
   
   def followings
-    @user=User.find(params[:id])
-    @users=@user.following_users
+    @title = 'followings'
+    @users = @user.following_users
+    render 'follow_list'
   end
   def followers
-    @user=User.find(params[:id])
-    @users=@user.follower_users
+    @title = 'followers'
+    @users = @user.follower_users
+    render 'follow_list'
   end
   
   
