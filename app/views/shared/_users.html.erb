@@ -1,5 +1,11 @@
- <% users.each do |user| %>
-  名前:<%= user.name %>:plofile:<%= link_to 'plofile_link',user_path(user.id) %>
 
-  </br>
+<ul class="follow">
+ <% users.each do |user| %>
+   <li class="text-left">
+    <%= gravatar_for(user) %>
+    <%= user.name %></br>
+    Plofile:
+    <%= link_to content_tag(:span,'Click!',:class=>'label label-info') ,user_path(user.id)  %>
+   </li>
  <% end %>
+</ul>

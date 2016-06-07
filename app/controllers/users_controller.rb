@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :collect_user, only: [:edit, :update]
 
   def show # 追加
-    @microposts = @user.microposts.order(created_at: :desc)
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page])
   end
 
   def new
@@ -40,12 +40,12 @@ class UsersController < ApplicationController
   
   def followings
     @title = 'followings'
-    @users = @user.following_users
+    @users = @user.following_users.page(params[:page])
     render 'follow_list'
   end
   def followers
     @title = 'followers'
-    @users = @user.follower_users
+    @users = @user.follower_users.page(params[:page])
     render 'follow_list'
   end
   

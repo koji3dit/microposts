@@ -30,6 +30,9 @@ gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
 # kaminari
 gem 'kaminari'
+gem 'faker'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

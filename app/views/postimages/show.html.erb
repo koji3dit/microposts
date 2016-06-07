@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @postimage.name %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <% if @postimage.image? %>
+    <div class="thumbnail">
+      <%= image_tag @postimage.image.url %>
+      <%= @postimage.image.url %>
+    </div>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_postimage_path(@postimage) %> |
+<%= link_to 'Back', postimages_path %>
